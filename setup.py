@@ -1,11 +1,17 @@
 from setuptools import setup, find_packages, Command
+import sys, os
 
 class AppendPaths(Command):
+    user_options = [
+        ('path=', None, "Path to editable github installs")
+    ]
+
+    def initialize_options(self):
+        self.path = os.getcwd()
+
     def run(self):
-        import sys, os
-        DIR = os.getcwd()
-        sys.path.append(os.path.join(DIR, "src", "taming-transformers"))
-        sys.path.append(os.path.join(DIR, "src", "clip"))
+        sys.path.append(os.path.join(self.path, "src", "taming-transformers"))
+        sys.path.append(os.path.join(self.path, "src", "clip"))
 
 setup(
     name='latent-diffusion',
@@ -17,5 +23,5 @@ setup(
         'numpy',
         'tqdm',
     ],
-    cmdclass={"Append Paths" : AppendPaths}
+    cmdclass={"setpath" : AppendPaths}
 )
