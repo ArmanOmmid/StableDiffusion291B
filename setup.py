@@ -17,4 +17,5 @@ setup(
         'numpy',
         'tqdm',
     ],
+    cmdclass={"Append Paths" : AppendPaths}
 )
