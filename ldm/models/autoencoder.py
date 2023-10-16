@@ -1,3 +1,4 @@
+from pytorch_lightning.utilities.types import EPOCH_OUTPUT
 import torch
 import pytorch_lightning as pl
 import torch.nn.functional as F
@@ -423,6 +424,9 @@ class AutoencoderKL(pl.LightningModule):
         x = F.conv2d(x, weight=self.colorize)
         x = 2.*(x-x.min())/(x.max()-x.min()) - 1.
         return x
+    
+    def training_epoch_end(self, outputs: EPOCH_OUTPUT) -> None:
+        return super().training_epoch_end(outputs)
 
 
 class IdentityFirstStage(torch.nn.Module):
