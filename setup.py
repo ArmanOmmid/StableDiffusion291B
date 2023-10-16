@@ -6,6 +6,9 @@ class AppendPaths(Command):
         ('path=', None, "Path to editable github installs")
     ]
 
+    def finalize_options(self):
+        pass
+
     def initialize_options(self):
         self.path = os.getcwd()
 
