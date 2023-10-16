@@ -10,7 +10,7 @@ class AppendPaths(Command):
         pass
 
     def initialize_options(self):
-        self.path = os.getcwd()
+        self.path = os.path.dirname(__file__)
 
     def run(self):
         sys.path.append(os.path.join(self.path, "src", "taming-transformers"))
